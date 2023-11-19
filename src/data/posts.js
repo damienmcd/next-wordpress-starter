@@ -147,6 +147,55 @@ export const QUERY_POST_BY_SLUG = gql`
         videoSource
         videoUrl
       }
+      panels {
+        fieldGroupName
+        panels {
+          ... on Post_Panels_Panels_ContactForm {
+            fieldGroupName
+            formId
+            introText
+            name
+            submitButtonText
+            formFields {
+              fieldGroupName
+              label
+              name
+              type
+            }
+          }
+          ... on Post_Panels_Panels_PageHeader {
+            content
+            ctaButtonLink
+            title
+            subtitle
+            headerId
+            fieldGroupName
+            ctaButtonText
+            backgroundImage {
+              uri
+              altText
+              caption
+              sourceUrl
+              srcSet
+              id
+            }
+          }
+          ... on Post_Panels_Panels_FullWidthText {
+            content
+            ctaButtonLink
+            ctaButtonText
+            fieldGroupName
+            title
+            subtitle
+          }
+          ... on Post_Panels_Panels_PageContent {
+            body
+            contentClass
+            contentId
+            fieldGroupName
+          }
+        }
+      }
     }
   }
 `;

@@ -165,14 +165,19 @@ export async function getStaticProps({ params = {} } = {}) {
     }
   }
 
-  const props = {
-    post,
-    socialImage: `${process.env.OG_IMAGE_DIRECTORY}/${params?.slug}.png`,
-    video: {
-      ...post.video,
-      oembed,
-    },
-  };
+  const props = oembed
+    ? {
+        post,
+        socialImage: `${process.env.OG_IMAGE_DIRECTORY}/${params?.slug}.png`,
+        video: {
+          ...post.video,
+          oembed,
+        },
+      }
+    : {
+        post,
+        socialImage: `${process.env.OG_IMAGE_DIRECTORY}/${params?.slug}.png`,
+      };
 
   const { category: relatedCategory, posts: relatedPosts } = (await getRelatedPosts(categories, postId)) || {};
   const hasRelated = relatedCategory && Array.isArray(relatedPosts) && relatedPosts.length;

@@ -2,7 +2,7 @@ import { ApolloClient, HttpLink, InMemoryCache } from '@apollo/client';
 
 import { removeLastTrailingSlash } from 'lib/util';
 
-import possibleTypes from '../../possibleTypes.json';
+// import possibleTypes from '../../possibleTypes.json';
 let client;
 
 /**
@@ -26,7 +26,7 @@ export function _createApolloClient() {
       uri: removeLastTrailingSlash(process.env.WORDPRESS_GRAPHQL_ENDPOINT),
     }),
     cache: new InMemoryCache({
-      possibleTypes,
+      // possibleTypes,
       typePolicies: {
         RootQuery: {
           queryType: true,
