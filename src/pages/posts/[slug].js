@@ -17,6 +17,8 @@ import Content from 'components/Content';
 import Metadata from 'components/Metadata';
 import FeaturedImage from 'components/FeaturedImage';
 import Post_Panels_Panels_PageHeader from 'components/Post_Panels_Panels_PageHeader';
+import Post_Panels_Panels_FullWidthText from 'components/Post_Panels_Panels_FullWidthText';
+import Post_Panels_Panels_PageContent from 'components/Post_Panels_Panels_PageContent';
 
 import styles from 'styles/pages/Post.module.scss';
 
@@ -121,14 +123,13 @@ export default function Post({ post, socialImage, related, video, panels }) {
             {panels &&
               post.panels.panels.map((panel) => {
                 if (panel.fieldGroupName === 'Post_Panels_Panels_PageHeader') {
-                  return (
-                    <Post_Panels_Panels_PageHeader
-                      key={panel.fieldGroupName}
-                      title={panel.title}
-                      subtitle={panel.subtitle}
-                      content={panel.content}
-                    />
-                  );
+                  return <Post_Panels_Panels_PageHeader key={panel.fieldGroupName} panel={panel} />;
+                }
+                if (panel.fieldGroupName === 'Post_Panels_Panels_FullWidthText') {
+                  return <Post_Panels_Panels_FullWidthText key={panel.fieldGroupName} panel={panel} />;
+                }
+                if (panel.fieldGroupName === 'Post_Panels_Panels_PageContent') {
+                  return <Post_Panels_Panels_PageContent key={panel.fieldGroupName} panel={panel} />;
                 }
                 return (
                   <div key={panel.fieldGroupName} className={styles.panels}>
